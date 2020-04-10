@@ -11,9 +11,9 @@ export class HomePage {
   responses = {};
 
   constructor(private api: APIService) {
+    this.getSummary();
   }
 
-  
 
   ionViewWillEnter(){
   this.getSummary()

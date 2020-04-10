@@ -9,9 +9,6 @@ import { map } from 'rxjs/operators';
 export class APIService {
 
   headers:HttpHeaders;
-  APIkey: string;
-  summary: Response;
-  statistic: Response;
 
   constructor(private http: HttpClient) {
      // Go and register to get  'x-rapidapi-key' at https://rapidapi.com/astsiatsko/api/coronavirus-monitor
