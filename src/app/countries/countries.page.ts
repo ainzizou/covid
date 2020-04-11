@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { APIService } from "../api.service";
+import { responseObject } from "../model/respon";
 
 @Component({
   selector: 'app-tab2',
@@ -8,18 +9,42 @@ import { APIService } from "../api.service";
 })
 export class CountriesPage {
 
-  responses = {};
+  data: any[];
+  toggleStatus = true;
+  countries: any[] = ['India', 'Brazil'];
 
-  constructor(private api: APIService) {}
+  constructor(private api: APIService) {
+    this.getStatistic()
+  }
 
-  ionViewWillEnter(){
+
+  ionViewWillEnter() {
     this.getStatistic()
   }
 
   async getStatistic() {
     await this.api.getStatistic().subscribe((
-      x => this.responses = x
+      x => this.data = x['response']
     ))
+
+    // this.countries = this.data.filter(data =>(
+    //   this.countries = data.country
+    // ))
   }
 
+  toggle() {
+    if (this.toggleStatus) {
+      this.toggleStatus = false;
+
+    }
+  }
+
+  toggleSection(index) {
+    this.data[index].open = !this.data[index].open;
+
+    if (this.toggleStatus && this.data[index].open) {
+      this.data
+        .filter((indexItem => indexItem != index))
+    }
+  }
 }
